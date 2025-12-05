@@ -10,6 +10,6 @@ abstract public class BuffSkill extends Skill{
     public void apply(){}
     public void apply(double multiplier){}
     public String applyReturn(){
-        return "";
+        return "錯誤!!!";
     }
 }

@@ -47,36 +47,27 @@ public class Main {
         JPanel panel = new JPanel(new BorderLayout());
         menuArea = new JTextArea();
         menuArea.setFont(new Font("Monospaced", Font.PLAIN, 18));
-        menuArea.setEditable(false);
+        menuArea.setEditable(false);        // 不可編輯
+        menuArea.setFocusable(false);       // 不可聚焦 → 點擊不會選字
 
         outputArea = new JTextArea();
         outputArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
-        outputArea.setEditable(false);
+        outputArea.setEditable(false);        // 不可編輯
+        outputArea.setFocusable(false);       // 不可聚焦 → 點擊不會選字
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                 new JScrollPane(menuArea),
-                new JScrollPane(outputArea));
+                new JScrollPane(outputArea)); // JScrollPane()字太長會有滾輪
         splitPane.setResizeWeight(0.5); // 各占一半
         splitPane.setDividerSize(5);     // 分割線寬度
 
-        frame.add(splitPane);
-        frame.setVisible(true);
+        panel.add(splitPane, BorderLayout.CENTER);
 
         frame.add(panel);
         frame.setVisible(true);
 
         panel.setFocusable(true);
         panel.requestFocusInWindow();
-
-        //禁止點擊
-        frame.setGlassPane(new JPanel() {
-            {
-                setOpaque(false);
-                addMouseListener(new java.awt.event.MouseAdapter() {}); // 吃掉所有點擊
-                addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {});
-            }
-        });
-        frame.getGlassPane().setVisible(true);
 
         panel.addKeyListener(new KeyAdapter() {
             @Override
